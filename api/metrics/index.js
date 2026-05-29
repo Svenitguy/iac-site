@@ -3,8 +3,7 @@ module.exports = async function (context, req) {
         body: {
             visitors: 42,
             uptime: "99.99",
-            responseTime: "120 ms",
-            environment: "production"
+            responseTime: "120 ms"
         }
     };
 };

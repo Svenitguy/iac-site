@@ -24,5 +24,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
 
-          app_location: "website"   # 👈 jouw map
-          output_location: ""       # 👈 plain HTML, dus leeg
+          app_location: "website"
+          api_location: "api"
+          output_location: ""
