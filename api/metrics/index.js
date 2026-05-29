@@ -3,8 +3,7 @@ const { app } = require('@azure/functions');
 app.http('metrics', {
     methods: ['GET'],
     authLevel: 'anonymous',
-    handler: async (request, context) => {
-
+    handler: async () => {
         return {
             jsonBody: {
                 visitors: 42,
