@@ -1,91 +1,134 @@
-# IaC Site (Azure Static Website)
+# IaC Site – Azure Static Web App (Terraform + CI/CD)
 
-This is a personal learning and portfolio project focused on **Infrastructure as Code (IaC)**, **Cloud Computing**, and **DevOps practices**.
-
-The goal is to build a fully automated deployment pipeline for a static website using Azure and modern DevOps tooling.
+![Azure](https://img.shields.io/badge/Azure-Static%20Web%20Apps-blue?logo=microsoftazure)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform)
+![CI/CD](https://img.shields.io/badge/GitHub-Actions-black?logo=githubactions)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
 ---
 
 ## 🚀 Overview
 
-This repository contains a simple static website that will be deployed to Azure using:
+This project is a personal **Cloud Engineering / DevOps learning project** focused on:
 
-- Infrastructure as Code (Terraform - in progress)
-- GitHub Actions (CI/CD pipeline - in progress)
-- Azure Static Web Apps
-- HTML, CSS, and JavaScript frontend
+- Infrastructure as Code (Terraform)
+- Cloud deployment on Microsoft Azure
+- CI/CD automation using GitHub Actions
+- Fully automated static website deployment
 
-The project demonstrates how a complete cloud deployment workflow can be automated from source code to production.
+The goal is to deploy a complete web application **without manual Azure Portal configuration after initial setup**.
+
+Every change pushed to the `main` branch automatically triggers a full build and deployment pipeline.
+
+---
+
+## 🌐 Live Application (Demo)
+
+This application is automatically deployed via CI/CD to Azure Static Web Apps.
+
+The environment can be recreated or replaced as part of Infrastructure as Code testing.
 
 ---
 
 ## 🧱 Architecture
 
-Planned architecture:
-
-GitHub Repository  
-→ GitHub Actions (CI/CD pipeline)  
-→ Azure Static Web App  
-→ Custom Domain (future improvement)  
-→ Azure Monitor / Logging (future improvement)
+```text
+GitHub (repo)
+→ GitHub Actions (CI/CD pipeline)
+→ Azure Static Web Apps (hosting)
+→ End users (browser)
+```
 
 ---
 
 ## 📁 Project Structure
-```text
+
+```
 iac-site/
 │
-├── infra/            # Terraform infrastructure (planned)
-├── website/          # Static website (HTML, CSS, JS)
-├── .github/          # GitHub Actions workflows (in progress)
-├── docs/             # Architecture diagrams and documentation (in progress)
+├── infra/                 # Terraform infrastructure
+│   ├── main.tf
+│   ├── providers.tf
+│   ├── variables.tf
+│   └── outputs.tf
+│
+├── website/               # Static frontend (HTML, CSS, JS)
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+├── docs/
+│   └── screenshots/
+│       ├── 01-azure-static-web-app-deployment-success.png
+│       ├── 02-github-actions-ci-cd-success.png
+│       ├── 03-terraform-apply-success.png
+│       ├── 04-azure-resource-group-created.png
+│       ├── 05-terraform-static-web-app-created.png
+│       ├── 06-azure-static-web-app-overview.png
+│       ├── 07-github-actions-deploy-success.png
+│       ├── 08-azure-static-web-app-live.png
+│       └── 09-azure-static-web-app-overview.png
 ```
 ---
 
 ## 🛠️ Technologies Used
 
-- Microsoft Azure
+- Microsoft Azure (Static Web Apps)
 - Terraform (Infrastructure as Code)
 - GitHub Actions (CI/CD)
 - HTML, CSS, JavaScript
-- VS Code
 - Git & GitHub
+- VS Code
 
 ---
 
 ## 🎯 Project Goals
 
-- Learn Infrastructure as Code (IaC) principles
-- Build real-world CI/CD pipelines
-- Deploy a static website to Azure
-- Understand cloud architecture and automation
-- Gain hands-on DevOps experience
+- Implement Infrastructure as Code using Terraform
+- Build a real-world CI/CD pipeline
+- Fully automate cloud deployment (no manual portal work)
+- Learn Azure cloud architecture
+- Gain DevOps / Cloud Engineering experience
 
 ---
 
 ## 📌 Current Status
 
-🚧 Work in progress  
-This project is currently under active development.
+✅ Fully working end-to-end deployment pipeline
 
-- Basic project structure created
-- GitHub repository initialized
-- Local development setup completed
-- CI/CD pipeline: not yet implemented
-- Infrastructure (Terraform): not yet implemented
+- Terraform infrastructure deployed successfully
+- Azure Static Web App running
+- GitHub Actions CI/CD active
+- Automated deployments on every push to `main`
+- Live website publicly accessible
 
 ---
 
-## 📈 Next Steps
+## 🚀 Future Improvements
 
-- Set up Azure Static Web App
-- Create GitHub Actions deployment pipeline
-- Add Terraform configuration for infrastructure
-- Create architecture diagram (`docs/architecture.drawio`)
-- Create architecture diagram (draw.io)
+### 🌐 Cloud & Infrastructure
+- Add custom domain (`iac.svenitguy.be`)
+- Improve Terraform structure (modules)
+- Add dev / prod environments
+- Implement remote state (Azure Storage backend)
+
+### 🔐 Security & Best Practices
+- Improve secret management
+- Add role-based access control (RBAC)
+- Harden CI/CD pipeline permissions
+
+### 📊 Observability
+- Add Azure Monitor / logging
+- Add deployment alerts
 
 ---
 
 ## 📚 Notes
 
-This project is being built step-by-step as part of a DevOps learning journey, focusing on real-world cloud infrastructure, automation, and deployment practices.
+This project is part of a personal journey into **Cloud Engineering, DevOps, and Infrastructure as Code**.
+
+It demonstrates real-world automation using modern cloud tooling and best practices, focusing on repeatable and scalable infrastructure.
