@@ -1,9 +1,15 @@
-const now = new Date();
+fetch("/api/metrics")
+  .then(res => res.json())
+  .then(data => {
 
-document.getElementById("lastUpdate").innerText =
-  now.toLocaleDateString() + " " + now.toLocaleTimeString();
+    document.getElementById("visitors").innerText = data.visitors;
 
-// Demo visitor counter
-const randomVisitors = Math.floor(Math.random() * 500) + 100;
+    document.getElementById("lastUpdate").innerText =
+      new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
 
-document.getElementById("visitors").innerText = randomVisitors;
+  })
+  .catch(err => {
+    console.error("API error:", err);
+
+    document.getElementById("visitors").innerText = "N/A";
+  });
