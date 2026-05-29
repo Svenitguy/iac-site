@@ -1,13 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>IaC Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IaC Site Dashboard</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <!-- Azure Application Insights -->
+  <script type="text/javascript">
+    var appInsights = window.appInsights || function (config) {
+      function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } }
+      var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f;
+      for (s.src = "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+        u.getElementsByTagName(o)[0].parentNode.appendChild(s),
+        t.cookie = u.cookie, t.queue = [], i = ["trackEvent", "trackPageView", "trackException",
+          "trackTrace", "trackDependencyData", "trackMetric", "trackPageViewPerformance",
+          "startTrackPage", "stopTrackPage", "startTrackEvent", "stopTrackEvent",
+          "addTelemetryInitializer", "setAuthenticatedUserContext",
+          "clearAuthenticatedUserContext", "flush"], r(i.shift()););
+      return t
+    }({
+      connectionString: "InstrumentationKey=8828cea5-c96f-4e2f-a3e8-9f207dad6359;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/;ApplicationId=952a5f84-eca7-46d5-885b-c972d6bc85a5"
+    });
+
+    window.appInsights = appInsights;
+    appInsights.trackPageView();
+  </script>
+
 </head>
+
 <body>
-  <h1>IaC Test Site</h1>
-  <p>This site will be deployed using Terraform + GitHub Actions + Azure.</p>
+
+  <div class="container">
+
+    <h1>☁️ IaC Cloud Monitoring Dashboard</h1>
+
+    <p class="subtitle">
+      Azure Static Web App deployed with Terraform + GitHub Actions CI/CD
+    </p>
+
+    <div class="dashboard">
+
+      <div class="card">
+        <h2>👁️ Visitors</h2>
+        <p id="visitors">128</p>
+      </div>
+
+      <div class="card">
+        <h2>⚡ Uptime</h2>
+        <p>99.99%</p>
+      </div>
+
+      <div class="card">
+        <h2>🚀 Deployment</h2>
+        <p class="success">Healthy</p>
+      </div>
+
+      <div class="card">
+        <h2>⏱️ Response Time</h2>
+        <p>114 ms</p>
+      </div>
+
+      <div class="card">
+        <h2>🌍 Environment</h2>
+        <p>Production</p>
+      </div>
+
+      <div class="card">
+        <h2>📅 Last Update</h2>
+        <p id="lastUpdate"></p>
+      </div>
+
+    </div>
+
+  </div>
 
   <script src="script.js"></script>
+
 </body>
+
 </html>
