@@ -10,25 +10,38 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Azure Application Insights (SAFE VERSION) -->
-  <script type="text/javascript">
-    // Minimal initialization without exposing full connection string in code
-    var appInsights = window.appInsights || (function () {
+<!-- Azure Application Insights -->
+<script type="text/javascript">
+  var appInsights = window.appInsights || function (config) {
+    function r(config) {
+      t[config] = function () {
+        var i = arguments;
+        t.queue.push(function () { t[config].apply(t, i) })
+      }
+    }
+    var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o);
+    
+    s.src = "https://js.monitor.azure.com/scripts/b/ai.2.min.js";
+    u.getElementsByTagName(o)[0].parentNode.appendChild(s);
 
-      var appInsights = {};
+    t.cookie = u.cookie;
+    t.queue = [];
 
-      appInsights.queue = [];
+    r("trackEvent");
+    r("trackPageView");
+    r("trackException");
+    r("trackMetric");
+    r("trackTrace");
 
-      appInsights.trackPageView = function () {
-        console.log("Page view tracked");
-      };
+    return t;
+  }({
+    instrumentationKey: "8828cea5-c96f-4e2f-a3e8-9f207dad6359"
+  });
 
-      return appInsights;
-    })();
+  window.appInsights = appInsights;
 
-    window.appInsights = appInsights;
-
-    appInsights.trackPageView();
-  </script>
+  appInsights.trackPageView();
+</script>
 
 </head>
 
