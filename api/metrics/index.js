@@ -1,5 +1,15 @@
 export default async function (context, req) {
 
+  context.res = {
+    status: 200,
+    body: {
+      test: "API werkt"
+    }
+  };
+}
+
+export default async function (context, req) {
+
   const connectionString = process.env.APPLICATIONINSIGHTS_CONNECTION_STRING;
   const apiKey = process.env.APPINSIGHTS_API_KEY;
 
