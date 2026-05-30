@@ -62,16 +62,15 @@ h1 {
 
 .good {
   color: #22c55e;
+  /* groen */
 }
 
-/* groen */
 .warning {
   color: #facc15;
+  /* geel */
 }
 
-/* geel */
 .bad {
   color: #ef4444;
+  /* rood */
 }
-
-/* rood */
