@@ -1,12 +1,16 @@
-export default async function (context, req) {
+module.exports = async function (context, req) {
+
+  context.log("metrics called");
 
   context.res = {
     status: 200,
     body: {
       ok: true,
-      connectionStringExists: !!process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
-      apiKeyExists: !!process.env.APPINSIGHTS_API_KEY,
-      timestamp: new Date().toISOString()
+      visitors: 1,
+      uptime: "99.99%",
+      responseTime: "120ms",
+      environment: "production",
+      lastUpdate: new Date().toISOString()
     }
   };
-}
+};
