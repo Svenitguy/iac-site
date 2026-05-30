@@ -6,6 +6,10 @@ fetch("/api/metrics")
     const visitorsElem = document.getElementById("visitors");
     visitorsElem.innerText = data.visitors ?? "0";
 
+    // 📨 Requests ← nieuw
+    const requestsElem = document.getElementById("requests");
+    requestsElem.innerText = data.requests ?? "0";
+
     // ⚡ Uptime
     const uptimeElem = document.getElementById("uptime");
     const uptimeValue = data.uptime != null ? Math.round(data.uptime) : 0;
@@ -61,7 +65,7 @@ fetch("/api/metrics")
   .catch(err => {
     console.error("API error:", err);
 
-    ["visitors", "uptime", "deployment", "responseTime", "environment", "lastUpdate"].forEach(id => {
+    ["visitors", "requests", "uptime", "deployment", "responseTime", "environment", "lastUpdate"].forEach(id => {
       document.getElementById(id).innerText = "N/A";
     });
   });
