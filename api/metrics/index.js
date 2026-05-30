@@ -10,33 +10,41 @@ export default async function (context, req) {
 
   const endpoint = `https://api.applicationinsights.io/v1/apps/${appId}/query`;
 
-  const query = `
-requests
-| summarize 
-    requests = count(),
-    avgResponseTime = avg(duration),
-    users = dcount(user_Id)
-`;
+  const queries = {
+    visitors: `requests | summarize visitors = dcount(user_Id)`,
+    requests: `requests | summarize requests = count()`,
+    responseTime: `requests | summarize avgResponseTime = avg(duration)`
+  };
 
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": apiKey
-    },
-    body: JSON.stringify({ query })
-  });
+  async function run(query) {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey
+      },
+      body: JSON.stringify({ query })
+    });
 
-  const data = await response.json();
+    return res.json();
+  }
 
-  const row = data.tables?.[0]?.rows?.[0] || [];
+  const [v, r, t] = await Promise.all([
+    run(queries.visitors),
+    run(queries.requests),
+    run(queries.responseTime)
+  ]);
+
+  const visitors = v.tables?.[0]?.rows?.[0]?.[0] || 0;
+  const requests = r.tables?.[0]?.rows?.[0]?.[0] || 0;
+  const responseTime = t.tables?.[0]?.rows?.[0]?.[0] || 0;
 
   context.res = {
     status: 200,
     body: {
-      visitors: row[2] || 0,
-      requests: row[0] || 0,
-      avgResponseTime: row[1] || 0,
+      visitors,
+      requests,
+      responseTime,
       lastUpdate: new Date().toISOString()
     }
   };
