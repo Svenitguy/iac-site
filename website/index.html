@@ -10,38 +10,38 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Azure Application Insights (SAFE VERSION) -->
-<!-- Azure Application Insights -->
-<script type="text/javascript">
-  var appInsights = window.appInsights || function (config) {
-    function r(config) {
-      t[config] = function () {
-        var i = arguments;
-        t.queue.push(function () { t[config].apply(t, i) })
+  <!-- Azure Application Insights -->
+  <script type="text/javascript">
+    var appInsights = window.appInsights || function (config) {
+      function r(config) {
+        t[config] = function () {
+          var i = arguments;
+          t.queue.push(function () { t[config].apply(t, i) })
+        }
       }
-    }
-    var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o);
-    
-    s.src = "https://js.monitor.azure.com/scripts/b/ai.2.min.js";
-    u.getElementsByTagName(o)[0].parentNode.appendChild(s);
+      var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o);
 
-    t.cookie = u.cookie;
-    t.queue = [];
+      s.src = "https://js.monitor.azure.com/scripts/b/ai.2.min.js";
+      u.getElementsByTagName(o)[0].parentNode.appendChild(s);
 
-    r("trackEvent");
-    r("trackPageView");
-    r("trackException");
-    r("trackMetric");
-    r("trackTrace");
+      t.cookie = u.cookie;
+      t.queue = [];
 
-    return t;
-  }({
-    instrumentationKey: "8828cea5-c96f-4e2f-a3e8-9f207dad6359"
-  });
+      r("trackEvent");
+      r("trackPageView");
+      r("trackException");
+      r("trackMetric");
+      r("trackTrace");
 
-  window.appInsights = appInsights;
+      return t;
+    }({
+      instrumentationKey: "8828cea5-c96f-4e2f-a3e8-9f207dad6359"
+    });
 
-  appInsights.trackPageView();
-</script>
+    window.appInsights = appInsights;
+
+    appInsights.trackPageView();
+  </script>
 
 </head>
 
@@ -61,12 +61,10 @@
         <h2>👁️ Visitors</h2>
         <p id="visitors">...</p>
       </div>
-
       <div class="card">
         <h2>⚡ Uptime</h2>
-        <p id="uptime">...</p>
+        <p id="uptime" class="status">...</p>
       </div>
-
       <div class="card">
         <h2>🚀 Deployment</h2>
         <p id="deployment" class="success">...</p>

@@ -33,7 +33,7 @@ h1 {
   background: #1e293b;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
 }
 
@@ -55,3 +55,23 @@ h1 {
 .success {
   color: #22c55e;
 }
+
+.status {
+  font-weight: bold;
+}
+
+.good {
+  color: #22c55e;
+}
+
+/* groen */
+.warning {
+  color: #facc15;
+}
+
+/* geel */
+.bad {
+  color: #ef4444;
+}
+
+/* rood */

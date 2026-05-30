@@ -6,7 +6,9 @@ fetch("/api/metrics")
       data.visitors ?? "0";
 
     document.getElementById("uptime").innerText =
-      data.uptime ?? "99.99%";
+      data.uptime != null
+        ? Math.round(data.uptime) + " %"
+        : "99.99 %";
 
     document.getElementById("deployment").innerText =
       data.deployment ?? "Healthy";
