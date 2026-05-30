@@ -1,15 +1,42 @@
 export default async function (context, req) {
 
-  context.log("metrics called");
+  const connectionString = process.env.APPLICATIONINSIGHTS_CONNECTION_STRING;
+  const apiKey = process.env.APPINSIGHTS_API_KEY;
 
-  return {
+  const appId = connectionString
+    .split(";")
+    .find(x => x.startsWith("ApplicationId="))
+    ?.split("=")[1];
+
+  const endpoint = `https://api.applicationinsights.io/v1/apps/${appId}/query`;
+
+  const query = `
+requests
+| summarize 
+    requests = count(),
+    avgResponseTime = avg(duration),
+    users = dcount(user_Id)
+`;
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey
+    },
+    body: JSON.stringify({ query })
+  });
+
+  const data = await response.json();
+
+  const row = data.tables?.[0]?.rows?.[0] || [];
+
+  context.res = {
     status: 200,
     body: {
-      ok: true,
-      visitors: 1,
-      uptime: "99.99%",
-      responseTime: "120ms",
-      environment: "production",
+      visitors: row[2] || 0,
+      requests: row[0] || 0,
+      avgResponseTime: row[1] || 0,
       lastUpdate: new Date().toISOString()
     }
   };
